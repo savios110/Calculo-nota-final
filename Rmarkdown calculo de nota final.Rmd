@@ -1,0 +1,92 @@
+---
+title: "Calculo de nota final"
+author: "Santiago Villarreal, Laura Maya, Oscar Meza"
+date: "May 2021 | Curso: Programació | Programa de Biológia"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+
+
+## Introduccion
+Los procesos calificativos inherentes de la educacion son la manera en como se lleva registro de los procesos de aprendizaje de los estudiantes, estos determinan si un alumno puede aprobar la asignatura, curso, o instrumentacion que este cursando en un momento dado, a veces los procesos educativos se dificultan por un sinnumero de razones y la culminacion satisfactoria del aprendizaje se ve truncada para esto se debe recurrir a metodos matematicos muy simples para entender y hacer una mejor planeación del estudio con el fin de enfocarse mas en las materias con peores notas, dicho de otra manera, concentrarse en las materias que estan mas proximas a perderse que a ganarse, para esto se ha creado el siguiente algoritmo, con el proposito de facilitarle un poco la vida a estudiantes con dudas en sus notas que necesiten motivacio para ganar los puntos que le hacen falta o resignarse a perder una asignatura que ya es imposibe de salvar sin realizar esfuerzos en vano
+
+### Código de la función
+```{r, eval = F}
+## Creacion de la funcion
+  Nota_final=function(porcentajes,calificaciones,a=3){
+  n=length(calificaciones)
+  Cfinal=(a-sum(porcentajes[1:n-1]*calificaciones[1:n-1]))/porcentajes[n]
+  condi=ifelse(test = calificaciones[n]>=Cfinal,yes = "pasa la asignatura","no pasa la asignatura")
+  return(cat("Con una nota en el trabajo final de", calificaciones[n], "el estudiante", condi, 
+             "Esto debido a que la nota mÃ­nima para el parcial debe ser de", round(Cfinal,2)))
+  return(cat("Nota mÃ­nima", Cfinal))
+}
+```
+## Aplicaciones
+
+- Conocer la nota necesaria para aprobar la asignatura
+
+- Basandose en el porcentaje asignado se puede calcular la porcion de este que es necesaria para cumplir con los requisitos de puntos establecidos
+
+### Aspectos a resaltar del código
+
+
+- El código usa el condicional `if ... else` para emplear ya sea el comentario de cuando se gana la materia o de cuando el usuario no tiene chance de aprobar.
+
+### Cargando la función
+
+La función se puede descargar del repositorio en github <https://github.com/savios110/Calculo-nota-final>. Para cargar la funciÃ³n a su espacio de trabajo use el siguiente código:
+
+```{r, eval = F}
+# Cargando la funcion
+source('https://github.com/savios110/Calculo-nota-final')
+```
+
+## Ejemplos de uso
+
+
+**Ejemplo 1**
+
+- Alejandra no ha podido estudiar muy bien para sus examenes y eso se ha reflejado en sus regulares notas, ella se sumerge en la web, y al haber encontrado un algoritmo para saber cuanto le hace falta sacar para ganar su materia, procede a usarlo.
+
+Nota_final(p1 = 0.25, p2=0.2, pfinal = 0.55,c1 = 2,c2 = 3, c3=5)
+
+Reultado
+"Con una nota en el parcial de 5 el estudiante pasa la asignatura Esto debido a que la nota mÃ­nima para el parcial debe ser de 3.45"
+
+
+
+**Ejemplo 2**
+
+- Pepito siente que su semestre no ha sido nada bueno, por eso su amigo Juan le recomieda usar el algoritmo formulado por el para saber si aun tiene oportunidad de ganar la asignatura.
+
+Nota_final(p1 = 0.25, p2=0.2, pfinal = 0.55,c1 = 0.2,c2 = 0.1, c3=5)
+
+Resultado
+"Con una nota en el parcial de 5 el estudiante no pasa la asignatura Esto debido a que la nota mÃ­nima para el parcial debe ser de 5.33"
+
+
+
+**Ejemplo 3**
+
+- Oscar neceita saber si sacando un 4 en su ultimo parcial de 55% es posible sacar una nota mayor a 3 su nota final en la materia.
+
+Nota_final(p1 = 0.25, p2=0.2, pfinal = 0.55,c1 = 2,c2 = 1, c3=4)
+
+Resultados
+"Con una nota en el parcial de 4 el estudiante no pasa la asignatura Esto debido a que la nota mÃ­nima para el parcial debe ser de 4.18"
+
+
+
+**Pagina de respaldo**
+En caso de no ser de su agrado el algoritmo mostrado anteriormente, puede dirigirse a la siguiente pagina web en donde encontrara un sitio dedicado al calculo de notas con una interfaz diferente <https://cuantonecesitoparaelfinal.com/>
+```
+
+
+
+
+
+
